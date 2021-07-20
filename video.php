@@ -9,22 +9,12 @@
     <div id="forma">
 <?php   
 
-// $url = $_POST["name"];
+error_reporting(0);
 
-
-$url = $_POST["name"];
-//$components = parse_url($url);
-//parse_str($components['query'], $results);
-//print_r($results); 
-
-//var_dump(parse_url($url));
-
-$video= parse_url($url, PHP_URL_PATH);
-//echo $video;
-if ($url){ $url= substr($video, -19);}
-//echo $url;
-
-if ($url){
+if($_POST['name']) {
+    $url = $_POST['name'];
+    $video= parse_url($url, PHP_URL_PATH);
+    $url= substr($video, -19);
     echo "
 	<blockquote class=\"tiktok-embed\"
     cite=\"https://www.tiktok.com/embed/v2/".$url."?lang=en-US\"
@@ -36,9 +26,17 @@ if ($url){
 <script async src=\"https://www.tiktok.com/embed.js\"></script>
 
 	";
-
-
-}else{  header("Location: mensaje.php"); }
+                 }else{
+                     
+                    
+                    header("Location: mensaje.php");
+                //modificar en caso de que no se pueda acceder al header darle la ruta asi
+                /*echo '
+                 <script>
+                 window.open("https://pw133467.000webhostapp.com/mensaje.php","_self");
+                 </script>'; */
+                
+                }
 
 
 
